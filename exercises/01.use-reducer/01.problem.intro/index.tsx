@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 
 // 🐨 here's where you'll implement your countReducer function.
+function countReducer(state: unknown, newState: number) {
+	return newState
+} //const countReducer = (state: unknown, newState: number) => newState
 
 function Counter({ initialCount = 0, step = 1 }) {
 	// 🐨 replace useState with useReducer.
 	// 💰 useReducer(countReducer, initialCount)
-	const [count, setCount] = useState(initialCount)
+	//const [count, setCount] = useState(initialCount)
+	const [count, setCount] = useReducer(countReducer, initialCount)
 
 	// 💰 you can write the countReducer function above so you don't have to make
 	// any changes to the next two lines of code! Remember:
