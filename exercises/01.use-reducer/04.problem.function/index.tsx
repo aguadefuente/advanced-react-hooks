@@ -3,12 +3,15 @@ import * as ReactDOM from 'react-dom/client'
 
 type State = { count: number }
 // 🦺 make it so the action can be a function which accepts State and returns State
-type Action = State
+//type Action = State
+type Action = State | ((currentState: State) => State)
+
 const countReducer = (state: State, action: Action) => ({
 	...state,
 	// 🐨 if the action is a function, then call it with the state and spread the results,
 	// otherwise, just spread the results (as it is now).
-	...action,
+	//...action,
+	...(typeof action === 'function' ? action(state) : action),
 })
 
 function Counter({ initialCount = 0, step = 1 }) {
@@ -18,8 +21,12 @@ function Counter({ initialCount = 0, step = 1 }) {
 	const { count } = state
 	// 🐨 update these calls to use the callback form. Use the currentState given
 	// to you by the callback form of setState when calculating the new state.
-	const increment = () => setState({ count: count + step })
-	const decrement = () => setState({ count: count - step })
+	//const increment = () => setState({ count: count + step })
+	//const decrement = () => setState({ count: count - step })
+	const increment = () =>
+		setState(currentState => ({ count: currentState.count + step }))
+	const decrement = () =>
+		setState(currentState => ({ count: currentState.count - step }))
 	return (
 		<div className="counter">
 			<output>{count}</output>

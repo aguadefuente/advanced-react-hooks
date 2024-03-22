@@ -1,6 +1,7 @@
 import { useReducer, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 
+//REDUCER FUNCTION
 // 🐨 here's where you'll implement your countReducer function.
 function countReducer(state: unknown, newState: number) {
 	return newState
@@ -10,14 +11,14 @@ function Counter({ initialCount = 0, step = 1 }) {
 	// 🐨 replace useState with useReducer.
 	// 💰 useReducer(countReducer, initialCount)
 	//const [count, setCount] = useState(initialCount)
-	const [count, setCount] = useReducer(countReducer, initialCount)
+	const [count, setCount] = useReducer(countReducer, initialCount) //setCount es el dispatcher
 
 	// 💰 you can write the countReducer function above so you don't have to make
 	// any changes to the next two lines of code! Remember:
 	// The 1st argument is called "state" - the current value of count
 	// The 2nd argument is called "newState" - the value passed to setCount
-	const increment = () => setCount(count + step)
-	const decrement = () => setCount(count - step)
+	const increment = () => setCount(count + step) //DISPATCHER
+	const decrement = () => setCount(count - step) //DISPATCHER
 	return (
 		<div className="counter">
 			<output>{count}</output>

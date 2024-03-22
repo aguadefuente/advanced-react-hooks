@@ -1,12 +1,12 @@
 import { useReducer, useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 
-const countReducer = (state: unknown, newState: number) => newState
+const countReducer = (state: unknown, newState: number) => newState //reducer function with two arguments: current state, action
 
 function Counter({ initialCount = 0, step = 1 }) {
 	const [count, setCount] = useReducer(countReducer, initialCount)
-	const increment = () => setCount(count + step)
-	const decrement = () => setCount(count - step)
+	const increment = () => setCount(count + step) //dispatch para increment
+	const decrement = () => setCount(count - step) //dispatch para decrement
 	return (
 		<div className="counter">
 			<output>{count}</output>
